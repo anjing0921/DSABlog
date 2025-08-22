@@ -8,6 +8,7 @@ const Blog = () => {
     const {id} = useParams()
     const [data, setData] = useState(null)
     const [comments, setComments] = useState([])
+    const [content, setContent] = useState('')
 
     const fetchBlogData = async ()=>{
         const data = blog_data.find(item => item._id === id)
@@ -17,6 +18,10 @@ const Blog = () => {
     const fetchComments = async () =>{
         setComments(comments_data)
 }
+    const addComment = async (e)=>{
+        e.preventDefault();
+    
+    }
 
     useEffect(()=>{
         fetchBlogData()
