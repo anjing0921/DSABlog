@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { blog_data, blogCategories } from '../assets/assets'
-import {motion} from "motion/react"
+import { motion } from "motion/react"
 import BlogCard from './BlogCard'
 // import { useAppContext } from '../context/AppContext'
 
@@ -8,7 +8,7 @@ const BlogList = () => {
 
     const [menu, setMenu] = useState('All')
 
-  return (
+    return (
     <div>
         <div className='flex justify-center gap-4 sm:gap-8 my-10 relative'>
             {blogCategories.map((item)=>(
@@ -30,7 +30,7 @@ const BlogList = () => {
             {blog_data.filter((blog)=> menu === "All" ? true : blog.category === menu).map((blog)=> <BlogCard key={blog._id} blog={blog}/>)}
         </div>
     </div>
-  )
+    )
 }
 
 export default BlogList
