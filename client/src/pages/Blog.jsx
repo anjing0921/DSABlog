@@ -61,6 +61,18 @@ const Blog = () => {
                     ))}
                 </div>
             </div>
+            {/* Add Comment Section */}
+            <div className='max-w-3xl mx-auto'>
+                <p className='font-semibold mb-4'>Add your comment</p>
+                <form onSubmit={addComment} className='flex flex-col items-start gap-4 max-w-lg'>
+
+                    <input onChange={(e)=> setName(e.target.value)} value={name} type="text" placeholder='Name' required className='w-full p-2 border border-gray-300 rounded outline-none'/>
+
+                    <textarea onChange={(e)=> setContent(e.target.value)} value={content} placeholder='Comment' className='w-full p-2 border border-gray-300 rounded outline-none h-48' required></textarea>
+
+                    <button type="submit" className='bg-primary text-white rounded p-2 px-8 hover:scale-102 transition-all cursor-pointer'>Submit</button>
+                </form>
+            </div>
 
             
         </div>    
