@@ -7,18 +7,20 @@ import Moment from 'moment'
 const Blog = () => {
     const {id} = useParams()
     const [data, setData] = useState(null)
+    const [comments, setComments] = useState([])
 
     const fetchBlogData = async ()=>{
-        
         const data = blog_data.find(item => item._id === id)
         setData(data)
-        
-        
     }
+
+    const fetchComments = async () =>{
+        setComments(data.comments)
+}
 
     useEffect(()=>{
         fetchBlogData()
-        // fetchComments()
+        fetchComments()
     },[])
 
     return data ? (
@@ -35,7 +37,7 @@ const Blog = () => {
         </div>
 
         <div className='mx-5 max-w-5xl md:mx-auto my-10 mt-6'>
-            {/* <img src={data.image} alt="" className='rounded-3xl mb-5'/> */}
+            
             <div className='grid place-items-center'>
                 <a href={data.external_link} target="_blank">
                     Click here to visit {data.title} problem
