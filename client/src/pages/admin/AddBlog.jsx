@@ -6,7 +6,11 @@ import Quill from 'quill';
 
 
 const AddBlog = () => {
-    
+    const [isAdding, setIsAdding] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    const editorRef = useRef(null)
+    const quillRef = useRef(null)
 
     const [image, setImage] = useState(false);
     const [title, setTitle] = useState('');
@@ -19,6 +23,12 @@ const AddBlog = () => {
     }
 
     const generateContent = async ()=>{}
+    useEffect(()=>{
+        // Initiate Quill only once
+        if(!quillRef.current && editorRef.current){
+            quillRef.current = new Quill(editorRef.current, {theme: 'snow'})
+        }
+    },[])
     
     return (
         <form onSubmit={onSubmitHandler} className='flex-1 bg-blue-50/50 text-gray-600 h-full overflow-scroll'>
@@ -37,6 +47,11 @@ const AddBlog = () => {
                         onChange={e => setSubTitle(e.target.value)} value={subTitle}/>
                 <p className='mt-4'>Blog Description</p>
                 <div className='max-w-lg h-74 pb-16 sm:pb-10 pt-2 relative'>
+                    <div ref={editorRef}></div>
+                    {loading && ( 
+                    <div className='absolute right-0 top-0 bottom-0 left-0 flex items-center justify-center bg-black/10 mt-2'>
+                        <div className='w-8 h-8 rounded-full border-2 border-t-white animate-spin'></div>
+                    </div> )}
                 
                     <button type='button' onClick={generateContent} className='absolute bottom-1 right-2 ml-2 text-xs text-white bg-black/70 px-4 py-1.5 rounded hover:underline cursor-pointer'>Generate with AI</button>
                 </div>
