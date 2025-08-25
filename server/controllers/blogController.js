@@ -1,15 +1,16 @@
-
+import Blog from '../models/Blog.js';
 
 export const addBlog = async (req, res)=>{
     try {
-        const {title, subTitle, description, category, external_link, isPublished} = JSON.parse(req.body.blog);
+        
+        const { title, subTitle, description, category, external_link, isPublished } = req.body;
         // const imageFile = req.file;
-
+        console.log(req.body)
         // Check if all fields are present
         if(!title || !category){
             return res.json({success: false, message: "Missing required fields" })
         }
-
+    
 
         await Blog.create({title, subTitle, description, category, external_link, isPublished})
 
