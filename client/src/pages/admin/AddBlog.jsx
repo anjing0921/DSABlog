@@ -1,25 +1,64 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { assets, blogCategories } from '../../assets/assets'
 import Quill from 'quill';
+import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
+
 
 
 
 
 const AddBlog = () => {
+    const {axios} = useAppContext()
     const [isAdding, setIsAdding] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const editorRef = useRef(null)
     const quillRef = useRef(null)
 
-    const [image, setImage] = useState(false);
+    // const [image, setImage] = useState(false);
     const [title, setTitle] = useState('');
     const [subTitle, setSubTitle] = useState('');
     const [category, setCategory] = useState('Startup');
+    const [external_link, setExternal_link] = useState('');
     const [isPublished, setIsPublished] = useState(false);
 
     const onSubmitHandler = async (e) =>{
-        e.preventDefault();
+        try {
+            e.preventDefault();
+            setIsAdding(true)
+
+            const blog = {
+                title, subTitle, 
+                description: quillRef.current.root.innerHTML,
+                category, 
+                external_link,
+                isPublished
+            }
+
+            // const formData = new FormData();
+            // formData.append('blog', blog)
+            // formData.append('image', image)
+
+            const {data} = await axios.post('/api/blog/add', blog);
+
+            if(data.success){
+                toast.success(data.message);
+                // setImage(false)
+                setTitle('')
+                setSubTitle('')
+                setExternal_link('')
+                quillRef.current.root.innerHTML = ''
+                setCategory('Startup')
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }finally{
+            setIsAdding(false)
+        }
+        
     }
 
     const generateContent = async ()=>{}
@@ -41,7 +80,7 @@ const AddBlog = () => {
                         onChange={e => setSubTitle(e.target.value)} value={subTitle}/>
                 <p className='mt-4'>Leetcode link</p>
                 <input type="text" placeholder='Type here' required className='w-full max-w-lg mt-2 p-2 border border-gray-300 outline-none rounded' 
-                        onChange={e => setSubTitle(e.target.value)} value={subTitle}/>
+                        onChange={e => setExternal_link(e.target.value)} value={external_link}/>
                 <p className='mt-4'>Blog Description</p>
                 <div className='max-w-lg h-74 pb-16 sm:pb-10 pt-2 relative'>
                     <div ref={editorRef}></div>
