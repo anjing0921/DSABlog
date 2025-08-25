@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
-import { assets, blog_data, comments_data } from '../assets/assets'
+import { assets } from '../assets/assets'
 import Navbar from '../components/Navbar'
 import Moment from 'moment'
 import Footer from '../components/Footer'
@@ -41,7 +41,18 @@ const Blog = () => {
     }
     const addComment = async (e)=>{
         e.preventDefault();
-    
+        try {
+            const { data } = await axios.post('/api/blog/add-comment', {blog: id, name, content});
+            if (data.success){
+                toast.success(data.message)
+                setName('')
+                setContent('')
+            }else{
+                toast.error(data.message);
+            }
+            } catch (error) {
+            toast.error(error.message);
+        }
     }
 
     useEffect(()=>{
