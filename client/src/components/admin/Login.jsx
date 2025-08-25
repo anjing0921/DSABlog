@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import toast from 'react-hot-toast';
-import { data } from 'react-router-dom';
+// import { data } from 'react-router-dom';
 
 
 const Login = () => {
