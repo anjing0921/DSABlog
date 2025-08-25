@@ -16,7 +16,6 @@ const AddBlog = () => {
     const editorRef = useRef(null)
     const quillRef = useRef(null)
 
-    // const [image, setImage] = useState(false);
     const [title, setTitle] = useState('');
     const [subTitle, setSubTitle] = useState('');
     const [category, setCategory] = useState('Startup');
@@ -35,10 +34,6 @@ const AddBlog = () => {
                 external_link,
                 isPublished
             }
-
-            // const formData = new FormData();
-            // formData.append('blog', blog)
-            // formData.append('image', image)
 
             const {data} = await axios.post('/api/blog/add', blog);
 
