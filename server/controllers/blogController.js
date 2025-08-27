@@ -1,5 +1,6 @@
 import Blog from "../models/Blog.js";
 import Comment from "../models/Comment.js";
+import main from '../configs/gemini.js';
 
 export const addBlog = async (req, res) => {
   try {
@@ -103,3 +104,13 @@ export const getBlogComments = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+export const generateContent = async (req, res)=>{
+    try {
+        const {prompt} = req.body;
+        const content = await main(prompt + ' Generate a blog content for this topic in simple text format')
+        res.json({success: true, content})
+    } catch (error) {
+        res.json({success: false, message: error.message})
+    }
+}
