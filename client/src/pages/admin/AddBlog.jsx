@@ -15,7 +15,7 @@ const AddBlog = () => {
     const quillRef = useRef(null)
 
     const [title, setTitle] = useState('');
-    const [subTitle, setSubTitle] = useState('');
+    // const [subTitle, setSubTitle] = useState('');
     const [category, setCategory] = useState('Startup');
     const [external_link, setExternal_link] = useState('');
     const [isPublished, setIsPublished] = useState(false);
@@ -44,7 +44,7 @@ const AddBlog = () => {
             setIsAdding(true)
 
             const blog = {
-                title, subTitle, 
+                title, 
                 description: quillRef.current.root.innerHTML,
                 category, 
                 external_link,
@@ -57,7 +57,7 @@ const AddBlog = () => {
                 toast.success(data.message);
                 // setImage(false)
                 setTitle('')
-                setSubTitle('')
+                // setSubTitle('')
                 setExternal_link('')
                 quillRef.current.root.innerHTML = ''
                 setCategory('Startup')
@@ -86,9 +86,9 @@ const AddBlog = () => {
                 <p className='mt-4'>Blog title</p>
                 <input type="text" placeholder='Type here' required className='w-full max-w-lg mt-2 p-2 border border-gray-300 outline-none rounded' 
                         onChange={e => setTitle(e.target.value)} value={title}/>
-                <p className='mt-4'>Sub title</p>
+                {/* <p className='mt-4'>Sub title</p>
                 <input type="text" placeholder='Type here' required className='w-full max-w-lg mt-2 p-2 border border-gray-300 outline-none rounded' 
-                        onChange={e => setSubTitle(e.target.value)} value={subTitle}/>
+                        onChange={e => setSubTitle(e.target.value)} value={subTitle}/> */}
                 <p className='mt-4'>Leetcode link</p>
                 <input type="text" placeholder='Type here' required className='w-full max-w-lg mt-2 p-2 border border-gray-300 outline-none rounded' 
                         onChange={e => setExternal_link(e.target.value)} value={external_link}/>
