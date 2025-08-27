@@ -5,9 +5,6 @@ import { useAppContext } from '../../context/AppContext';
 import toast from 'react-hot-toast';
 
 
-
-
-
 const AddBlog = () => {
     const {axios} = useAppContext()
     const [isAdding, setIsAdding] = useState(false)
