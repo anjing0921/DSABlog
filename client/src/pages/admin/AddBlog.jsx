@@ -72,7 +72,7 @@ const AddBlog = () => {
         
     }
 
-    const generateContent = async ()=>{}
+    // const generateContent = async ()=>{}
     useEffect(()=>{
         // Initiate Quill only once
         if(!quillRef.current && editorRef.current){
