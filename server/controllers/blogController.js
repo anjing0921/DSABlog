@@ -6,7 +6,6 @@ export const addBlog = async (req, res) => {
   try {
     const {
       title,
-      subTitle,
       description,
       category,
       external_link,

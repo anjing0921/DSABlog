@@ -71,7 +71,7 @@ const Blog = () => {
                 <h1 className='text-2xl sm:text-5xl font-semibold max-w-2xl mx-auto text-gray-800'>{data.title}</h1>
                 {/* <h2 className='my-5 max-w-lg truncate mx-auto'>{data.subTitle}</h2> */}
             </div>
-            <div className='mx-5 max-w-5xl md:mx-auto my-10 mt-6'>
+            <div className='mx-7 max-w-5xl md:mx-auto my-10 mt-6'>
                 <div className='grid place-items-center'>
                     <a href={data.external_link} target="_blank">
                         Click here to visit {data.title} problem
